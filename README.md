@@ -1,6 +1,6 @@
 # flutter_exercise_2_login_page_2
 
-A new Flutter project.
+Sample Login Page UI using Flutter.
 
 ## Getting Started
 
