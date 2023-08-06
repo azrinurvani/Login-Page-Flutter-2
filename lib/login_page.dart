@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool? isChecked = false;
-  String valuePhoneNumber;
+  String? valuePhoneNumber;
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
