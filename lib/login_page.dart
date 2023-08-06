@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool? isChecked = false;
+  String valuePhoneNumber;
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -112,6 +114,9 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                     ),
                   ),
+                  onSubmitted: (String? value) => {
+                    valuePhoneNumber = value!,
+                  },
                 ),
               ),
             ),
@@ -176,7 +181,30 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text("Confirm"),
+                          content: Text(
+                              "Apakah anda yakin nomor $valuePhoneNumber terdaftar di akun WhatsApp Anda ?"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                if (kDebugMode) {
+                                  print(
+                                      'Nomor hp anda adalah $valuePhoneNumber');
+                                }
+                                Navigator.of(context)
+                                    .pop(false); //membuang lapisan terluar
+                              },
+                              child: const Text("OK"),
+                            )
+                          ],
+                        );
+                      });
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF305F72),
                 ),
